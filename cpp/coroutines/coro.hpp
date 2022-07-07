@@ -1,39 +1,11 @@
 #pragma once
 
+#include "utils.hpp"
+#include "result.hpp"
+
 #include <coroutine>
 #include <memory>
 #include <vector>
-
-#ifdef __linux__
-#define ALWAYS_INLINE __attribute__((always_inline))
-#else
-#define ALWAYS_INLINE __forceinline
-#endif
-
-
-class Result {
-    /**
-     * Helper class to reduce code duplication when casting from void* to T
-     *
-     * */
-public:
-    /**
-     * Get the result casted to the expected type
-     * */
-    template<typename T>
-    ALWAYS_INLINE T result() {
-        return (T) *((T *) m_data.get());
-    }
-
-    Result(std::shared_ptr<void> &data) noexcept: m_data{data} {}
-
-    ~Result() {
-        m_data.reset();
-    }
-
-private:
-    std::shared_ptr<void> m_data;  /// Void pointer with the returned value from coroutine
-};
 
 
 class Task {
