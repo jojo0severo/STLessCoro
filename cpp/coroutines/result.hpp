@@ -1,3 +1,8 @@
+#include "utils.hpp"
+
+#include <memory>
+
+
 class Result {
     /**
      * Helper class to reduce code duplication when casting from void* to T
