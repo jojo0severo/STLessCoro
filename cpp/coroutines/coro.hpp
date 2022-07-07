@@ -74,7 +74,7 @@ public:
         /**
          * Called on co_return exp; where exp can be of any type
          *
-         * It will be stored as an void pointer to be used later
+         * It will be stored as a void pointer to be used later
          * */
         template<typename T = void *>
         inline void return_value(T &value) &{
